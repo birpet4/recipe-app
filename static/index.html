@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <a href="index.html"
+          ><span class="font-semibold text-xl tracking-tight"
+            >Recipe App</span
+          ></a
+        >
+      </div>
+      <div class="block lg:hidden">
+        <button
+          class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+        >
+          <svg
+            class="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+          <a
+            href="index.html"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Shops
+          </a>
+        </div>
+        <div>
+          <a
+            href="add-new-shop.html"
+            class="inline-block mx-4 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+            >Add new shop</a
+          >
+        </div>
+        <div>
+          <a
+            href="login.html"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+            >Login</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto m-8 justify-center items-center flex">
+      <div class="max-w-sm w-full lg:max-w-full lg:flex">
+        <div
+          class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+          style="background-image: url('https://picsum.photos/200')"
+          title="Woman holding a mug"
+        ></div>
+        <div
+          class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
+        >
+          <div class="mb-8">
+            <div class="text-gray-900 font-bold text-xl mb-2">Shop #1</div>
+            <p class="text-gray-700 text-base">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptatibus quia, nulla! Maiores et perferendis eaque,
+              exercitationem praesentium nihil.
+            </p>
+            <div class="bg-gray-200 m-8">
+              <div class="flex items-center float-left">
+                <div class="text-sm">
+                  <p class="text-gray-900 leading-none">
+                    Minimum Price: 3000 HUF
+                  </p>
+                  <p class="text-gray-600">Available recipes: 1</p>
+                </div>
+              </div>
+              <button
+                class="float-right bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+                onclick="location.href='recipes.html'"
+              >
+                Recipes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
