@@ -6,43 +6,39 @@
     <button
     class="float-right bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
     type="button"
-    onclick="location.href='/shops/1/recipes/new'"
+    onclick="location.href='/shops/<%= shop._id %>/recipes/new'"
     >
     Add new recipe
+    </button>
+    <button class=" bg-red-500 border-0 py-2 px-6  border-0 inline-flex items-center rounded justify-center text-white ml-4" onclick="location.href='/shops/del/<%= shop._id %>'" >Delete
     </button>
 </div>
 
 <!-- recipes in a shop -->
-<div class="container mx-auto m-8 justify-center items-center flex">
-  <div class="max-w-sm w-full lg:max-w-full lg:flex">
-    <div
-      class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-      style="background-image: url('https://picsum.photos/200')"
-      title="Woman holding a mug"
-    ></div>
-    <div
-      class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
-    >
-    <div class="mb-8">
-      <div class="text-gray-900 font-bold text-xl mb-2">Chicken with spinach</div>
-      <p class="text-gray-700 text-base">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Voluptatibus quia, nulla! Maiores et perferendis eaque,
-        exercitationem praesentium nihil.
-      </p>
-      <div class="flex items-center">
-        <div class="text-sm">
-          <p class="text-gray-900 leading-none">3000 HUF</p>
-          <p class="text-gray-600">15 minutes</p>
-        </div>
+
+
+<div class="container my-12 mx-auto px-4 md:px-12">
+  <div class="flex flex-wrap -mx-1 lg:-mx-4">
+    <% recipes.forEach(function(recipe){ %>
+
+      <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+          <article class="overflow-hidden rounded-lg shadow-lg">
+              <a href="/shops/<%= shop._id %>/recipes/<%= recipe._id %>/details %>">
+                  <img alt="Placeholder" class="block h-auto w-full" src="https://lorempixel.com/600/400/food">
+              </a>
+              <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                  <h1 class="text-lg">
+                      <a class="no-underline hover:underline text-black" href="#">
+                          <%= recipe.name %>
+                      </a>
+                  </h1>
+                  <p class="text-grey text-sm">
+                      <%= recipe.price %> Ft
+                  </p>
+              </header>
+
+          </article>
       </div>
-      <button
-        class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
-        onclick="location.href='/shops/1/recipes/1/details'"
-      >
-        Details
-      </button>
-    </div>
-  </div>
-</div>
+      <% }); %>
+     
 <%- include('footer') -%>

@@ -4,7 +4,17 @@
 const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
-  return function (req, res, next) {
-    next();
-  };
+  return function(req, res, next) {
+    if (typeof req.body.password === 'undefined') {
+        return next();
+    }
+
+    if (req.body.password === 'pwadmin') {
+        req.session.loggedIn = true;
+        return req.session.save(err => res.redirect('/shops'));
+    }
+
+    res.locals.error = 'Invalid password';
+    return next();
+};
 };

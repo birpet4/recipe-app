@@ -3,84 +3,148 @@
 
 <!-- Edit/Add new recipe form -->
 <div class="container mx-auto m-8 justify-center items-center flex">
-    <div class="w-full max-w-xs">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div>
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/shops/<%= shop._id %>/recipes/new" method="POST" id="newRecipe">
         <div class="mb-4">
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
-            for="username"
+            for="recipeName"
           >
-            Shop ID
+                Recipe name
           </label>
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
+            id="recipeName"
             type="text"
-            placeholder="Username"
+            placeholder="Recipe name"
+            name="recipeName"
+            value="<%= locals.recipe ? locals.recipe.name : '' %>"
           />
+        </div>
+        <div class="mb-4">
+          <table id="ingredients">
+            <tr>
+                <td>          
+                  <label
+                  class="block text-gray-700 text-sm font-bold mb-2"
+                  for="username"
+                  >
+                    Ingredients
+                  </label>
+                </td>
+            </tr>
+            <% if(locals.recipe) { %>
+              <% recipe.ingredients.forEach(function(ingredient){ %>
+            <tr>
+                <td>          
+                  <input
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="ingredientNum0"
+                  type="text"
+                  placeholder="Ingredient"
+                  name="ingredientNum0"
+                  value="<%= ingredient.name %>"
+                  />
+                </td>
+                  <td>
+                    <input 
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-3"
+                    type="number" 
+                    name="quantityNum0" 
+                    value="<%= ingredient.price %>">
+                  </input>
+                </td>
+                <td>          
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="unitNum0"
+                    type="text"
+                    placeholder="Unit"
+                    name="unitNum0"
+                    value="<%= ingredient.unit %>"
+                  />
+                </td>
+              </tr>
+                <% }); %>
+                <% } else { %>
+                <tr>
+                  <td>          
+                    <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="ingredientNum0"
+                    type="text"
+                    placeholder="Ingredient"
+                    name="ingredientNum0"
+                    />
+                  </td>
+                    <td>
+                      <input 
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="number" 
+                      name="quantityNum0" 
+                      placeholder="Quantity">
+                    </input>
+                  </td>
+                  <td>          
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="unitNum0"
+                      type="text"
+                      placeholder="Unit"
+                      name="unitNum0"
+                    />
+                  </td>
+                </tr>
+                  <% } %>
+              </tr>
+            </table>
+            <button type="button" class="border border-green-500 text-green-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-green-600 focus:outline-none focus:shadow-outline" onclick="addIngredients()">Add</button>
         </div>
         <div class="mb-4">
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
             for="username"
           >
-            Recipe name
+            Price
           </label>
-          <input
+          <input 
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Username"
-          />
+            type="number" 
+            name="price" 
+            value="<%= locals.recipe ? recipe.price : '0' %>">
+          </input>
         </div>
         <div class="mb-4">
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
-            for="username"
+            for="preparation"
           >
-            Ingredients
+            Preparation
           </label>
-          <input
+          <input 
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Username"
-          />
+            type="text" 
+            id="preparation"
+            placeholder="Preparation"
+            name="preparation"
+            value="<%= locals.recipe ? recipe.preparation : '' %>" 
+           >
+          </input>
+          <input hidden type="number" id="ingredientsCounter" name="ingredientsCounter" value="1"/>
         </div>
-        <div class="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="username"
-          >
-            Shop ID
-          </label>
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Username"
-          />
-        </div>
+
         <div class="flex items-center justify-between">
-          <button
-            class="bg-teal-500 hover:bg-tale-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onclick="location.href='/shops/1/recipes/1/details'"
-          >
-            Save
-          </button>
+          <input type="submit" class="bg-teal-500 hover:bg-tale-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="Create"/>
           <button
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onclick="location.href='/shops/1/recipes'"
+            onclick="location.href='/shops/<%= shop._id %>/recipes'"
           >
             Delete
           </button>
         </div>
       </form>
-      <p class="text-center text-gray-500 text-xs">
-        &copy;2020 Recipe App All rights reserved.
-      </p>
+
     </div>
   </div>
   <%- include('footer') -%>

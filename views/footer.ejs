@@ -1,2 +1,41 @@
+<script text="text/javascript">
+function addIngredients(){
+    const ingredientsTable = document.getElementById("ingredients");
+    const num = ingredientsTable.rows.length;
+    const ingredientsCounter = document.getElementById("ingredientsCounter");
+
+    const row = ingredientsTable.insertRow(-1);
+    const ingredientCell = row.insertCell(0);
+    const quantityCell = row.insertCell(1);
+    const unitCell = row.insertCell(2);
+
+    const ingredient = `<input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="ingredientNum${num}"
+                    type="text"
+                    placeholder="Ingredient"
+                    name=ingredientNum${num}
+                   />`;
+
+    const quantity = ` <input 
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="number" 
+                    name="quantityNum${num}" 
+                    value="0">`;
+
+    const unit = `<input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="unitNum${num}"
+                    type="text"
+                    placeholder="Unit"
+                    name="unitNum${num}"
+                  />`;
+
+    ingredientCell.innerHTML = ingredient;
+    quantityCell.innerHTML = quantity;
+    unitCell.innerHTML = unit;
+    ingredientsCounter.value++;
+}
+</script>
 </body>
 </html>

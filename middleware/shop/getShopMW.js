@@ -4,7 +4,16 @@
 const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
+  const ShopModel = requireOption(objectrepository, "ShopModel");
+
   return function (req, res, next) {
-    next();
+    ShopModel.findOne({ _id: req.params.shopid }, (err, shop) => {
+      if (err || !shop) {
+        return next(err);
+      }
+
+      res.locals.shop = shop;
+      return next();
+    });
   };
 };

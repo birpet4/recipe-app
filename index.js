@@ -1,12 +1,19 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const bodyParser = require('body-parser');
-
+const session = require('express-session');
+const port = 3000;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.disable('etag');
+
+app.use(
+  session({
+      secret: 'secret'
+  })
+);
 
 app.use(function (req, res, next) {
   res.tpl = {};
