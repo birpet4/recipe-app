@@ -14,6 +14,7 @@ module.exports = function (objectrepository) {
       var name = req.body["ingredientNum" + i];
       var quantity = req.body["quantityNum" + i];
       var unit = req.body["unitNum" + i];
+
       if (name && quantity && unit) {
         ingredients.push({
           name: name,
@@ -24,6 +25,7 @@ module.exports = function (objectrepository) {
         next();
       }
     }
+
     if (
       typeof req.body.recipeName === "undefined" ||
       typeof req.body.preparation === "undefined" ||
@@ -36,10 +38,6 @@ module.exports = function (objectrepository) {
     if (typeof res.locals.recipe === "undefined") {
       res.locals.recipe = new RecipeModel();
     }
-
-    // if (Number.isNaN(parseInt(req.body.ev, 10))) {
-    //     return next(new Error('Év számmal kell hogy megadva legyen!'));
-    // }
 
     res.locals.recipe.name = req.body.recipeName;
     res.locals.recipe.price = parseInt(req.body.price, 10);

@@ -10,8 +10,7 @@ module.exports = function (objectrepository) {
   return function (req, res, next) {
     const name = req.body.shopName;
     const address = req.body.address;
-    console.log(name);
-    console.log(address);
+
     if (typeof name === "undefined" || typeof address === "undefined") {
       return next();
     }

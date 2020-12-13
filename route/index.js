@@ -3,6 +3,7 @@ const renderMW = require("../middleware/renderMW");
 // auth
 const authMW = require("../middleware/auth/authMW");
 const checkPassMW = require("../middleware/auth/checkPassMW");
+const logoutMW = require("../middleware/auth/logoutMW");
 
 // shops
 const getShopListMW = require("../middleware/shop/getShopListMW");
