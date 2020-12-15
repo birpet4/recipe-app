@@ -1,17 +1,17 @@
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const session = require('express-session');
+const bodyParser = require("body-parser");
+const session = require("express-session");
 const port = 3000;
-
-app.set('view engine', 'ejs');
+require("dotenv").config();
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.disable('etag');
+app.disable("etag");
 
 app.use(
   session({
-      secret: 'secret'
+    secret: "secret",
   })
 );
 
@@ -23,10 +23,10 @@ app.use(function (req, res, next) {
 });
 
 // Load routing
-require('./route/index')(app);
+require("./route/index")(app);
 
 app.use((err, req, res, next) => {
-  res.end('Something went wrong...');
+  res.end("Something went wrong...");
   console.log(err);
 });
 
