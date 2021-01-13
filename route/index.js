@@ -28,82 +28,89 @@ module.exports = function (app) {
 
   // shop related endpoints
   app.get(
-    "/shops",
-    authMW(objRepo),
-    getShopListMW(objRepo),
-    renderMW(objRepo, "shops")
-  );
-
-  app.use(
-    "/shops/new",
-    authMW(objRepo),
-    saveShopMW(objRepo), // in case of get request, skip (next)
-    renderMW(objRepo, "edit-add-shop")
-  );
-
-  app.use(
-    "/shops/edit/:shopid",
-    authMW(objRepo),
-    getShopMW(objRepo),
-    saveShopMW(objRepo),
-    renderMW(objRepo, "edit-add-shop")
-  );
-
-  app.get(
-    "/shops/del/:shopid",
-    authMW(objRepo),
-    getShopMW(objRepo),
-    delShopMW(objRepo)
-  );
-
-  app.use(
-    "/shops/:shopid/recipes/new",
-    authMW(objRepo),
-    getShopMW(objRepo),
-    // getShopRecipeListMW(objRepo),
-    saveRecipeMW(objRepo),
-    renderMW(objRepo, "edit-add-recipe")
-  );
-
-  // recipe related enpoints
-  app.get(
-    "/shops/:shopid/recipes",
-    authMW(objRepo),
-    getShopMW(objRepo),
+    "/recipes",
+    // authMW(objRepo),
     getShopRecipeListMW(objRepo),
     renderMW(objRepo, "recipe-list")
   );
 
-  app.get(
-    "/shops/:shopid/recipes/:recipeid/details",
-    authMW(objRepo),
-    getShopMW(objRepo),
-    getShopRecipeListMW(objRepo),
-    getRecipeMW(objRepo),
-    renderMW(objRepo, "recipe")
+  app.use(
+    "/recipes/new",
+    // authMW(objRepo),
+    saveRecipeMW(objRepo), // in case of get request, skip (next)
+    renderMW(objRepo, "edit-add-recipe")
   );
 
   app.use(
-    "/shops/:shopid/recipes/edit/:recipeid",
-    authMW(objRepo),
-    getShopMW(objRepo),
-    getShopRecipeListMW(objRepo),
+    "/recipes/edit/:recipeid",
+    // authMW(objRepo),
     getRecipeMW(objRepo),
     saveRecipeMW(objRepo),
     renderMW(objRepo, "edit-add-recipe")
   );
 
   app.get(
-    "/shops/:shopid/recipes/del/:recipeid",
-    authMW(objRepo),
-    getShopMW(objRepo),
-    getShopRecipeListMW(objRepo),
+    "/recipes/del/:recipeid",
+    // authMW(objRepo),
     getRecipeMW(objRepo),
     delRecipeMW(objRepo)
   );
 
-  app.use("/logout", logoutMW(objRepo));
+  app.get(
+    "/recipes/:recipeid/details",
+    // authMW(objRepo),
+    getRecipeMW(objRepo),
+    renderMW(objRepo, "recipe")
+  );
 
-  // main endpoint
-  app.use("/", checkPassMW(objRepo), renderMW(objRepo, "login"));
+  // app.use(
+  //   "/shops/:shopid/recipes/new",
+  //   authMW(objRepo),
+  //   getShopMW(objRepo),
+  //   // getShopRecipeListMW(objRepo),
+  //   saveRecipeMW(objRepo),
+  //   renderMW(objRepo, "edit-add-recipe")
+  // );
+
+  // // recipe related enpoints
+  // app.get(
+  //   "/shops/:shopid/recipes",
+  //   authMW(objRepo),
+  //   getShopMW(objRepo),
+  //   getShopRecipeListMW(objRepo),
+  //   renderMW(objRepo, "recipe-list")
+  // );
+
+  // app.get(
+  //   "/shops/:shopid/recipes/:recipeid/details",
+  //   authMW(objRepo),
+  //   getShopMW(objRepo),
+  //   getShopRecipeListMW(objRepo),
+  //   getRecipeMW(objRepo),
+  //   renderMW(objRepo, "recipe")
+  // );
+
+  // app.use(
+  //   "/shops/:shopid/recipes/edit/:recipeid",
+  //   authMW(objRepo),
+  //   getShopMW(objRepo),
+  //   getShopRecipeListMW(objRepo),
+  //   getRecipeMW(objRepo),
+  //   saveRecipeMW(objRepo),
+  //   renderMW(objRepo, "edit-add-recipe")
+  // );
+
+  // app.get(
+  //   "/shops/:shopid/recipes/del/:recipeid",
+  //   authMW(objRepo),
+  //   getShopMW(objRepo),
+  //   getShopRecipeListMW(objRepo),
+  //   getRecipeMW(objRepo),
+  //   delRecipeMW(objRepo)
+  // );
+
+  // app.use("/logout", logoutMW(objRepo));
+
+  // // main endpoint
+  app.use("/", getShopRecipeListMW(objRepo), renderMW(objRepo, "recipe-list"));
 };

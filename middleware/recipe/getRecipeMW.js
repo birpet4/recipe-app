@@ -5,15 +5,13 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   const RecipeModel = requireOption(objectrepository, "RecipeModel");
-  return function (req, res, next) {
-    if (typeof res.locals.shop === "undefined") {
-      return next();
-    }
 
-    RecipeModel.findOne({ _shop: res.locals.shop._id }, (err, recipe) => {
-      if (err) {
+  return function (req, res, next) {
+    RecipeModel.findOne({ _id: req.params.recipeid }, (err, recipe) => {
+      if (err || !recipe) {
         return next(err);
       }
+
       res.locals.recipe = recipe;
       return next();
     });

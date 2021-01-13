@@ -29,8 +29,7 @@ module.exports = function (objectrepository) {
     if (
       typeof req.body.recipeName === "undefined" ||
       typeof req.body.preparation === "undefined" ||
-      typeof req.body.price === "undefined" ||
-      typeof res.locals.shop === "undefined"
+      typeof req.body.price === "undefined"
     ) {
       return next();
     }
@@ -43,13 +42,12 @@ module.exports = function (objectrepository) {
     res.locals.recipe.price = parseInt(req.body.price, 10);
     res.locals.recipe.preparation = req.body.preparation;
     res.locals.recipe.ingredients = ingredients;
-    res.locals.recipe._shop = res.locals.shop._id;
 
     res.locals.recipe.save((err) => {
       if (err) {
         return next(err);
       }
-      return res.redirect(`/shops/${res.locals.shop._id}/recipes`);
+      return res.redirect(`/recipes`);
     });
   };
 };

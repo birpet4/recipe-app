@@ -6,12 +6,11 @@
     <button
     class="float-right bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
     type="button"
-    onclick="location.href='/shops/<%= shop._id %>/recipes/new'"
+    onclick="location.href='/recipes/new'"
     >
     Add new recipe
     </button>
-    <button class=" bg-red-500 border-0 py-2 px-6  border-0 inline-flex items-center rounded justify-center text-white ml-4" onclick="location.href='/shops/del/<%= shop._id %>'" >Delete
-    </button>
+
 </div>
 
 <!-- recipes in a shop -->
@@ -23,12 +22,9 @@
 
       <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
           <article class="overflow-hidden rounded-lg shadow-lg">
-              <a href="/shops/<%= shop._id %>/recipes/<%= recipe._id %>/details %>">
-                  <img alt="Placeholder" class="block h-auto w-full" src="https://lorempixel.com/600/400/food">
-              </a>
               <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                   <h1 class="text-lg">
-                      <a class="no-underline hover:underline text-black" href="#">
+                      <a class="no-underline hover:underline text-black" href="/recipes/<%= recipe._id %>/details">
                           <%= recipe.name %>
                       </a>
                   </h1>

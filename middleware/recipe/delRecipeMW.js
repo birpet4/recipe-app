@@ -14,7 +14,7 @@ module.exports = function (objectrepository) {
         return next(err);
       }
 
-      return res.redirect(`/shops/${res.locals.shop._id}/recipes`);
+      return res.redirect("/recipes");
     });
   };
 };
